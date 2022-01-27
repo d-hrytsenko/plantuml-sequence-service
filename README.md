@@ -13,18 +13,17 @@ cd config
 cp EXAMPLE.service_names.yml service_names.yml
 # Fill the mapping for the needed services
 ```
-2)
-```python
-# Install the requirements
+2) Install the requirements
+```shell
 pip3 install -r requirements.txt
 ```
-```python
-# Run the service
+3) Run the service
+```shell
 python3 -m plantuml_sequence_service.main
 ```
 
 ## Update the services for which the sequence diagram is needed
-Before running the needed services:
+Before running the needed services, set the following environment variables:
 ```bash
 # Optional, host and port of PlantUML Sequence Service:
 export UML_APP_HOST=127.0.0.1
@@ -44,4 +43,14 @@ from plantuml_sequence_service.utils import patch_requests
 from plantuml_sequence_service.utils import uml_flask
 uml_flask.init(app)
 ```
-Now, the needed service can be run.
+Now, the needed services can be run.
+
+## Generating the sequence diagram
+1) Ensure that PlantUML Sequence Service and needed services are running
+2) Make some interaction, that should trigger the communication between services. It might be some end-user action, like login, for example
+3) Open the http://127.0.0.1:8000/docs url and execute the endpoint `/uml_text`.
+![](https://raw.githubusercontent.com/d-hrytsenko/plantuml-sequence-service/master/docs/uml_text_docs.png)
+4) In the response body, there will be a PlantUML sequence generated, that can be viewed, for example, using the https://plantuml-editor.kkeisuke.com/ website.
+![](https://raw.githubusercontent.com/d-hrytsenko/plantuml-sequence-service/master/docs/sequence_example.png)
+
+If there is a need to capture other calls, `/reset` endpoint can be called - it will delete all already captured http messages.
