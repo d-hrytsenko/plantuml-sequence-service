@@ -1,0 +1,4 @@
+.idea
+.venv
+*.pyc
+plantuml_sequence_service/config/service_names.yml

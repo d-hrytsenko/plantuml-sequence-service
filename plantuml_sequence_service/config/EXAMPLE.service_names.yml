@@ -1,0 +1,5 @@
+# Put here the mapping of service urls to human-readable names
+localhost:5005: "Data Service"
+localhost:5008: "Data Provider Service"
+localhost:5006: "Session Service"
+localhost:5010: "Auth Service"
